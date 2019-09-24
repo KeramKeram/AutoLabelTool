@@ -23,9 +23,10 @@ def get_configuration_data():
 template, images_to_paste_dir = get_configuration_data()
 
 template_image = Image.open(template)
-
+counter = 0
 for filename in glob.glob(images_to_paste_dir + '/*.jpg'):
     im=Image.open(filename)
     width, height = im.size
     output_image = paste_image(template_image, im, 0, 0 , width, height)
-    output_image.save('output.jpg')
+    output_image.save('output_' + str(counter) + '.jpg')
+    counter +=1
