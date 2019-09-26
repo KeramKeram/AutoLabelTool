@@ -49,15 +49,6 @@ def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, 
         except AttributeError:
             pass
 
-    # tree.find('annotation/folder').text = folder
-    # tree.find('annotation/filename').text = filename
-    # tree.find('annotation/path').text = path + "/" + out_folder + "/" + filename
-    # tree.find('annotation/size/width').text = width
-    # tree.find('annotation/size/height').text = height
-    # tree.find('annotation/object/bndbox/xmin').text = xmin
-    # tree.find('annotation/object/bndbox/ymin').text = ymin
-    # tree.find('annotation/object/bndbox/xmax').text = xmax
-    # tree.find('annotation/object/bndbox/ymax').text = ymax
     tree.write(out_folder + "/" + class_name + "_" + str(number) + ".xml")
 
 
