@@ -16,11 +16,12 @@ def load_configuration_file(path):
 
 def get_configuration_data():
     configuration = load_configuration_file(file_path)
-    template = configuration['InputFiles']['Template']
-    images_to_paste_dir = configuration['InputFiles']['ImagesToPasteDir']
-    return template, images_to_paste_dir
+    return configuration
 
-template, images_to_paste_dir = get_configuration_data()
+output_dict = get_configuration_data()
+template = output_dict['InputFiles']['Template']
+images_to_paste_dir = output_dict['InputFiles']['ImagesToPasteDir']
+outDir = output_dict['OutputFiles']['OutputFolder']
 
 template_image = Image.open(template)
 counter = 0
@@ -28,5 +29,5 @@ for filename in glob.glob(images_to_paste_dir + '/*.jpg'):
     im=Image.open(filename)
     width, height = im.size
     output_image = paste_image(template_image, im, 0, 0 , width, height)
-    output_image.save('output_' + str(counter) + '.jpg')
+    output_image.save(outDir + '/output_' + str(counter) + '.jpg')
     counter +=1
