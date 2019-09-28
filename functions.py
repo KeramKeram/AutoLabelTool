@@ -36,7 +36,8 @@ def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, 
             elem.text = elem.text.replace('x2', str(xmax))
             elem.text = elem.text.replace('y2', str(ymax))
         except AttributeError:
-            pass
+            print("Error during xml parsing.")
+            raise AttributeError
 
     tree.write(out_folder + "/" + class_name + "_" + str(number) + ".xml")
 
