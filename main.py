@@ -19,10 +19,11 @@ def main():
     class_name = output_dict['InputFiles']['className']
 
     ####### PREPARE DATA #########
-
     template_image = Image.open(template)
     template_width, template_height = template_image.size
     counter = 0
+    print("Working...")
+
     for filename in glob.glob(images_to_paste_dir + '/*.jpg'):
         im = Image.open(filename)
         width, height = im.size
@@ -43,6 +44,7 @@ def main():
                              x2_end, y2_end, outDir, class_name, counter)
         counter += 1
 
+    print("Done.")
 
 if __name__ == "__main__":
     main()
