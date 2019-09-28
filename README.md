@@ -16,9 +16,11 @@ Add this generated images to template image with background only. We are adding 
 area(rectangle area) on template(we randomly generating coordinates in specific are). In the end we want to generate xml
 file with label data(Pascal VOC Format)
 On this image we have only background. Green dot rectangle it is area when we want to put images.
+
 ![alt text](https://github.com/KeramKeram/AutoLabelTool/blob/master/background.png)
 
 This is example output:
+
 ![alt text](https://github.com/KeramKeram/AutoLabelTool/blob/master/example_out.png)
 
 ### End information
