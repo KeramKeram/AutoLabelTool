@@ -30,16 +30,17 @@ def main():
         width, height = im.size
         x_shift, y_shift = functions.get_paste_coordinates_shift(x_min_start, y_min_start, x_max_start, y_max_start,
                                                                  width, height)
-        x1_start = int(x_min_start) + x_shift
-        y1_start = int(y_min_start) + y_shift
+        x1_start = x_shift
+        y1_start = y_shift
 
         output_image = functions.paste_image(template_image, im, x1_start, y1_start)
-        output_img_name = outDir + '/output_' + str(counter) + '.jpg'
+        new_image_file_name = class_name + '_output_' + str(counter) + '.jpg'
+        output_img_name = outDir + "/" + new_image_file_name
         output_image.save(output_img_name)
 
         x2_end = width + x1_start
         y2_end = height + y1_start
-        functions.create_xml(xml_template, class_name, 'output_' + str(counter) + '.jpg', template_width,
+        functions.create_xml(xml_template, class_name, new_image_file_name, template_width,
                              template_height, str(x1_start),
                              str(y1_start),
                              x2_end, y2_end, outDir, class_name, counter, ml_path)
