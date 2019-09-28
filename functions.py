@@ -22,14 +22,13 @@ def get_root(file):
 
 
 def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, ymax, out_folder, class_name,
-               number):
-    path = Path(__file__).parent.absolute()
+               number, ml_path):
     root, tree = get_root(template_xml)
     for elem in root.getiterator():
         try:
             elem.text = elem.text.replace('folder', folder)
             elem.text = elem.text.replace('filename', filename)
-            elem.text = elem.text.replace('path', str(path) + "/" + out_folder + "/" + filename)
+            elem.text = elem.text.replace('path', str(ml_path) + "/" + out_folder + "/" + filename)
             elem.text = elem.text.replace('width', str(width))
             elem.text = elem.text.replace('height', str(height))
             elem.text = elem.text.replace('x1', str(xmin))

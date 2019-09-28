@@ -10,13 +10,14 @@ def main():
     output_dict = functions.get_configuration_data()
     template = output_dict['InputFiles']['Template']
     images_to_paste_dir = output_dict['InputFiles']['ImagesToPasteDir']
-    outDir = output_dict['OutputFiles']['OutputFolder']
     xml_template = output_dict['InputFiles']['xmlTemplate']
+    class_name = output_dict['InputFiles']['className']
+    outDir = output_dict['OutputFiles']['OutputFolder']
+    ml_path = output_dict['OutputFiles']['pathToFileInMLProgram']
     x_min_start = output_dict['TemplateConfArea']['leftX']
     y_min_start = output_dict['TemplateConfArea']['leftY']
     x_max_start = output_dict['TemplateConfArea']['RightX']
     y_max_start = output_dict['TemplateConfArea']['RightY']
-    class_name = output_dict['InputFiles']['className']
 
     ####### PREPARE DATA #########
     template_image = Image.open(template)
@@ -41,10 +42,11 @@ def main():
         functions.create_xml(xml_template, class_name, 'output_' + str(counter) + '.jpg', template_width,
                              template_height, str(x1_start),
                              str(y1_start),
-                             x2_end, y2_end, outDir, class_name, counter)
+                             x2_end, y2_end, outDir, class_name, counter, ml_path)
         counter += 1
 
     print("Done.")
+
 
 if __name__ == "__main__":
     main()
