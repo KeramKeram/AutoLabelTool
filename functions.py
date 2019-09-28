@@ -57,3 +57,15 @@ def get_paste_coordinates_shift(x_min_rect, y_min_rect, x_max_rect, y_max_rect, 
     x_shift = random.randrange(int(x_min_rect), int(x_max_rect) - int(width))
     y_shift = random.randrange(int(y_min_rect), int(y_max_rect) - int(height))
     return int(x_shift), int(y_shift)
+
+
+def get_new_coordinates(old_x1, old_y1, old_x2, old_y2, old_height, old_width, new_height, new_width):
+    width_ratio = old_width / new_width
+    height_ratio = old_height / new_height
+
+    x1 = round(old_x1 / width_ratio)
+    y1 = round(old_y1 / height_ratio)
+    x2 = round(old_x2 / width_ratio)
+    y2 = round(old_y2 / height_ratio)
+
+    return x1, y1, x2, y2

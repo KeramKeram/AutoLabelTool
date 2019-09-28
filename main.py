@@ -24,6 +24,9 @@ def main():
     template_image = Image.open(template)
     template_width, template_height = template_image.size
     counter = 0
+    scaled_img_height = 196
+    scaled_img_width = 403
+    new_scale = scaled_img_width, scaled_img_height,
     print("Working...")
 
     for filename in glob.glob(images_to_paste_dir + '/*.jpg'):
@@ -37,14 +40,19 @@ def main():
         output_image = functions.paste_image(template_image, im, x1_start, y1_start)
         new_image_file_name = class_name + '_output_' + str(counter) + '.jpg'
         output_img_name = outDir + "/" + new_image_file_name
+        output_image.thumbnail(new_scale, Image.ANTIALIAS)
         output_image.save(output_img_name)
 
         x2_end = width + x1_start
         y2_end = height + y1_start
+
+        scaled_x1, scaled_y1, scaled_x2, scaled_y2 = functions.get_new_coordinates(x1_start, y1_start, x2_end, y2_end,
+                                                                                   template_height, template_width,
+                                                                                   scaled_img_height, scaled_img_width)
         functions.create_xml(xml_template, ml_img_dir_path, new_image_file_name, template_width,
-                             template_height, str(x1_start),
-                             str(y1_start),
-                             x2_end, y2_end, outDir, class_name, counter, ml_path)
+                             template_height, str(scaled_x1),
+                             str(scaled_y1),
+                             str(scaled_x2), str(scaled_y2), outDir, class_name, counter, ml_path)
         counter += 1
 
     print("Done.")
