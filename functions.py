@@ -31,6 +31,7 @@ def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, 
             elem.text = elem.text.replace('path', str(ml_path) + "/" + filename)
             elem.text = elem.text.replace('width', str(width))
             elem.text = elem.text.replace('height', str(height))
+            elem.text = elem.text.replace('name', class_name)
             elem.text = elem.text.replace('x1', str(xmin))
             elem.text = elem.text.replace('y1', str(ymin))
             elem.text = elem.text.replace('x2', str(xmax))

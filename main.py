@@ -14,6 +14,7 @@ def main():
     class_name = output_dict['InputFiles']['className']
     outDir = output_dict['OutputFiles']['OutputFolder']
     ml_path = output_dict['OutputFiles']['pathToFileInMLProgram']
+    ml_img_dir_path = output_dict['OutputFiles']['pathToImgDirectoryMLProgram']
     x_min_start = output_dict['TemplateConfArea']['leftX']
     y_min_start = output_dict['TemplateConfArea']['leftY']
     x_max_start = output_dict['TemplateConfArea']['RightX']
@@ -40,7 +41,7 @@ def main():
 
         x2_end = width + x1_start
         y2_end = height + y1_start
-        functions.create_xml(xml_template, class_name, new_image_file_name, template_width,
+        functions.create_xml(xml_template, ml_img_dir_path, new_image_file_name, template_width,
                              template_height, str(x1_start),
                              str(y1_start),
                              x2_end, y2_end, outDir, class_name, counter, ml_path)
