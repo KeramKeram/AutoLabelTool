@@ -28,7 +28,7 @@ def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, 
         try:
             elem.text = elem.text.replace('folder', folder)
             elem.text = elem.text.replace('filename', filename)
-            elem.text = elem.text.replace('path', str(ml_path) + "/" + out_folder + "/" + filename)
+            elem.text = elem.text.replace('path', str(ml_path) + "/" + filename)
             elem.text = elem.text.replace('width', str(width))
             elem.text = elem.text.replace('height', str(height))
             elem.text = elem.text.replace('x1', str(xmin))

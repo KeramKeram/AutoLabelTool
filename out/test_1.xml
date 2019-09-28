@@ -1,7 +1,7 @@
 <annotation>
 	<folder>test</folder>
 	<filename>output_1.jpg</filename>
-	<path>/home/test/pro/tensorflow/AutoLabelTool/out/out/output_1.jpg</path>
+	<path>/home/test/pro/tensorflow/AutoLabelTool/out/output_1.jpg</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -17,10 +17,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>15</xmin>
-			<ymin>24</ymin>
-			<xmax>271</xmax>
-			<ymax>280</ymax>
+			<xmin>29</xmin>
+			<ymin>36</ymin>
+			<xmax>285</xmax>
+			<ymax>292</ymax>
 		</bndbox>
 	</object>
 </annotation>
