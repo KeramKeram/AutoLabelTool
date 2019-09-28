@@ -3,13 +3,15 @@ import configparser
 import glob
 from xml.etree import ElementTree as et
 from pathlib import Path
+import random
 
 file_path = "configuration.ini"
 
 
-def paste_image(template_image, image, left, upper, right, lower):
-    template_image.paste(image, (left, upper, right, lower))
-    return template_image
+def paste_image(template_image, image, left, upper):
+    template_img_copy = template_image.copy()
+    template_img_copy.paste(image, (left, upper))
+    return template_img_copy
 
 
 def load_configuration_file(path):
@@ -29,6 +31,11 @@ def get_root(file):
         root = tree.getroot()
         return root, tree
     return None, None
+
+def get_paste_coordinates_shift(x_min_rect, y_min_rect, x_max_rect, y_max_rect, width, height):
+    x_shift = random.randrange(int(x_min_rect), int(x_max_rect) - int(width))
+    y_shift = random.randrange(int(y_min_rect), int(y_max_rect) - int(height))
+    return  int(x_shift), int(y_shift)
 
 
 def create_xml(template_xml, folder, filename, width, height, xmin, ymin, xmax, ymax, out_folder, class_name,
@@ -70,14 +77,19 @@ class_name = output_dict['InputFiles']['className']
 for filename in glob.glob(images_to_paste_dir + '/*.jpg'):
     im = Image.open(filename)
     width, height = im.size
-    x1_start = int(x_min_start)
-    y1_start = int(y_min_start)
-    x2_start = int(x_min_start) + width
-    y2_start = int(y_min_start) + height
-    output_image = paste_image(template_image, im, x1_start, y1_start, x2_start, y2_start)
+    x_shift, y_shift = get_paste_coordinates_shift(x_min_start, y_min_start, x_max_start, y_max_start, width, height)
+
+    x1_start = int(x_min_start) + x_shift
+    y1_start = int(y_min_start) + y_shift
+
+    output_image = paste_image(template_image, im, x1_start, y1_start)
     output_img_name = outDir + '/output_' + str(counter) + '.jpg'
     output_image.save(output_img_name)
+
+    x2_end = width + x1_start
+    y2_end = height + y1_start
+
     create_xml(xml_template, class_name, 'output_' + str(counter) + '.jpg', template_width, template_height, str(x1_start),
                str(y1_start),
-               str(x2_start), str(y2_start), outDir, class_name, counter)
+               x2_end, y2_end, outDir, class_name, counter)
     counter += 1
