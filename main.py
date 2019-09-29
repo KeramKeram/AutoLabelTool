@@ -15,6 +15,7 @@ def main():
     outDir = output_dict['OutputFiles']['OutputFolder']
     ml_path = output_dict['OutputFiles']['pathToFileInMLProgram']
     ml_img_dir_path = output_dict['OutputFiles']['pathToImgDirectoryMLProgram']
+    resize_ratio = output_dict['OutputFiles']['resizeRatio']
     x_min_start = output_dict['TemplateConfArea']['leftX']
     y_min_start = output_dict['TemplateConfArea']['leftY']
     x_max_start = output_dict['TemplateConfArea']['RightX']
@@ -24,8 +25,8 @@ def main():
     template_image = Image.open(template)
     template_width, template_height = template_image.size
     counter = 0
-    scaled_img_height = 196
-    scaled_img_width = 403
+    scaled_img_height = int(round(template_height / float(resize_ratio)))
+    scaled_img_width = int(round(template_width / float(resize_ratio)))
     new_scale = scaled_img_width, scaled_img_height,
     print("Working...")
 
@@ -49,8 +50,8 @@ def main():
         scaled_x1, scaled_y1, scaled_x2, scaled_y2 = functions.get_new_coordinates(x1_start, y1_start, x2_end, y2_end,
                                                                                    template_height, template_width,
                                                                                    scaled_img_height, scaled_img_width)
-        functions.create_xml(xml_template, ml_img_dir_path, new_image_file_name, template_width,
-                             template_height, str(scaled_x1),
+        functions.create_xml(xml_template, ml_img_dir_path, new_image_file_name, scaled_img_width,
+                             scaled_img_height, str(scaled_x1),
                              str(scaled_y1),
                              str(scaled_x2), str(scaled_y2), outDir, class_name, counter, ml_path)
         counter += 1
