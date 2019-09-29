@@ -1,5 +1,4 @@
 # AutoLabelTool
-**Work in progress.**
 
 From time to time there is need to create database of images for machine learning. In order to create bigger base we use
 some kind of augumentator. Sometimes we only want to one element to be augmented and rest of background should be intact.
